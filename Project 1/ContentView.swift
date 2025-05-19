@@ -8,16 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = BibleViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List(viewModel.books, id: \.id) { (id, book) in
+                NavigationLink(destination: ChapterListView(book: book)) {
+                    Text(book.name)
+                }
+            }
+            .navigationTitle("Bible Books")
         }
-        .padding()
+        .onAppear {
+            viewModel.fetchBibleData()
+        }
     }
 }
+
+struct ChapterListView: View {
+    let book: Book
+
+    var body: some View {
+        List(book.chapters.sorted(by: { $0.key < $1.key }), id: \.key) { chapter, verseCount in
+            Text("Chapter \(chapter): \(verseCount) verses")
+        }
+        .navigationTitle(book.name)
+    }
+}
+
 
 #Preview {
     ContentView()
