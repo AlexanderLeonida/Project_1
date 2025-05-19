@@ -26,7 +26,7 @@ class ChapterListViewController: UITableViewController {
 
     // returns the book's sorted chapters ["1": "31", "2": "25"]
     var sortedChapters: [(String, String)] {
-        return book.chapters.sorted { $0.key < $1.key }
+        book.chapters.sorted { (Int($0.key) ?? 0) < (Int($1.key) ?? 0) }
     }
 
     // tells the table how many rows (chapters) to show
