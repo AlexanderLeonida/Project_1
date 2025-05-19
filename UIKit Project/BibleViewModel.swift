@@ -1,6 +1,6 @@
 //
 //  BibleViewModel.swift
-//  Project 1
+//  UIKit Project
 //
 //  Created by Alex Leonida on 5/19/25.
 //

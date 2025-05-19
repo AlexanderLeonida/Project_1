@@ -1,13 +1,13 @@
 //
-//  Project_1UITestsLaunchTests.swift
-//  Project 1UITests
+//  UIKit_ProjectUITestsLaunchTests.swift
+//  UIKit ProjectUITests
 //
 //  Created by Alex Leonida on 5/19/25.
 //
 
 import XCTest
 
-final class Project_1UITestsLaunchTests: XCTestCase {
+final class UIKit_ProjectUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
