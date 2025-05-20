@@ -67,9 +67,9 @@ class BibleBooksViewController: UITableViewController {
     // called when the user taps a book in the list
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // get selected book
-        let (_, book) = viewModel.books[indexPath.row]
+        let (id, book) = viewModel.books[indexPath.row]
         // ChapterListViewController to show the chapters of the selected book
-        let vc = ChapterListViewController(book: book)
+        let vc = ChapterListViewController(book: book, bookId: id)
         // show new screen
         navigationController?.pushViewController(vc, animated: true)
     }

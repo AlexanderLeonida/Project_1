@@ -10,10 +10,13 @@ import UIKit
 // list of chapters for a selected book
 class ChapterListViewController: UITableViewController {
     
+    // holds book Id for URL pass to Olive Tree url
+    let bookId: Int
     // holds the book that was selected from the previous screen
     let book: Book
     
-    init(book: Book) {
+    init(book: Book, bookId: Int) {
+        self.bookId = bookId
         self.book = book
         super.init(style: .plain) // superclass initializer plain table style
         self.title = book.name // set screen title to the book's name (ex. "genesis")
@@ -49,5 +52,18 @@ class ChapterListViewController: UITableViewController {
         cell.detailTextLabel?.text = "\(verses) verses"
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let (chapter, verseCountStr) = sortedChapters[indexPath.row]
+        if let verseCount = Int(verseCountStr) {
+            let vc = VerseListViewController(
+                bookId: bookId,
+                bookName: book.name,
+                chapter: chapter,
+                verseCount: verseCount
+            )
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
